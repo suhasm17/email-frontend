@@ -1,0 +1,91 @@
+/* Navbar.css */
+
+/* Navbar.css */
+
+.navbar {
+  background-color: #333; /* Darker background color for a sleek look */
+  color: #fff; /* White text color */
+  font-family: 'Roboto', sans-serif; /* Replace with your preferred font */
+  font-size: 18px; /* Font size */
+  text-align: center;
+  padding: 15px 0; /* Slightly larger padding for better spacing */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* A bit more prominent shadow */
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Vertically center the navigation items */
+}
+
+.nav-item {
+  margin: 0 20px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.2s;
+  border-bottom: 2px solid transparent; /* Add an underline effect */
+  padding-bottom: 3px; /* Adjust spacing for underline effect */
+}
+
+.nav-item a:hover {
+  color: #fe6601;
+  transform: scale(1.1);
+  border-bottom: 2px solid #fe6601; /* Highlight the link with an underline on hover */
+}
+
+/* Homepage.css */
+
+.header {
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(254, 102, 1, 0.7), rgba(255, 153, 0, 0.7)), url('images/email.png');
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%; /* Use viewport height for full screen */
+  top: 0; /* Set the top position to the very top */
+  left: 0;
+  z-index: 1; /* Decrease the z-index value to make it appear below the navbar */
+  padding-top: 80px; /* Add padding at the top to accommodate the navbar */
+}
+
+.email-text {
+  font-size: 64px;
+  color: #fff;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  animation: typing 3s steps(30) 0.5s 1 normal both, blink-caret 1s step-end;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
