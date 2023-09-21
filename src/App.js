@@ -1,14 +1,29 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './Homepage';
+import User from './user/User';
+import ModifyUser from './user/ModifyUser';
+import DeleteUser from './user/DeleteUser';
 import Signup from './user/Signup';
+import Admin from './admin/Admin';
+import CreateNotification from './admin/CreateNotification';
+import UpdateNotification from './admin/UpdateNotification';
+import SendNotification from './admin/SendNotification';
+import DeleteNotification from './admin/DeleteNotification';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin" element={<div>Admin Page</div>} />
-        <Route path="/user" element={<Signup />} />
+      <Route path="/Admin" element={<Admin />} />
+        <Route path="/CreateNotification" element={<CreateNotification/>} />
+        <Route path="/UpdateNotification" element={<UpdateNotification />} />
+        <Route path="/SendNotification" element={<SendNotification />} />
+        <Route path="/DeleteNotification" element={<DeleteNotification />} />
+        <Route path="/User" element={<User />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/ModifyUser" element={<ModifyUser />} />
+        <Route path="/DeleteUser" element={<DeleteUser />} />
         <Route path="/" element={<Homepage />} />
       </Routes>
     </Router>
