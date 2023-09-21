@@ -67,6 +67,7 @@ const DeleteNotification = () => {
                 setNotificationType(e.target.value);
               }}
             >
+              <option value="">Select Notification Type</option> {/* Default option */}
               <option value="promotions">Promotions</option>
               <option value="releaseEvents">Release Events</option>
               <option value="latestPlans">Latest Plans</option>
@@ -79,6 +80,7 @@ const DeleteNotification = () => {
               value={selectedSubject}
               onChange={(e) => setSelectedSubject(e.target.value)}
             >
+              <option value="">Select Notification Subject</option> {/* Default option */}
               {notificationSubjects.map((subject) => (
                 <option key={subject} value={subject}>
                   {subject}

@@ -5,7 +5,7 @@ import '../css/Signup.css';
 function CreateNotification() {
   // Define state to manage form data and error messages
   const [formData, setFormData] = useState({
-    notificationType: 'promotions',
+    notificationType: '',
     notificationSubject: '',
     notificationContent: '',
   });
@@ -57,6 +57,7 @@ function CreateNotification() {
           value={formData.notificationType}
           onChange={handleChange}
         >
+          <option value="">Select Notification Type</option> {/* Default option */}
           <option value="promotions">Promotions</option>
           <option value="latestPlans">Latest Plans</option>
           <option value="releaseEvents">Release Events</option>

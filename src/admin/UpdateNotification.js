@@ -5,7 +5,7 @@ import Navbar from '../Navbar';
 
 
 const UpdateNotification = () => {
-  const [notificationType, setNotificationType] = useState('promotions');
+  const [notificationType, setNotificationType] = useState('');
   const [notificationSubjects, setNotificationSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [notificationContent, setNotificationContent] = useState('');
@@ -75,6 +75,7 @@ const UpdateNotification = () => {
             loadSubjects();
           }}
         >
+          <option value="">Select Notification Type</option> {/* Default option */}
           <option value="promotions">Promotions</option>
           <option value="releaseEvents">Release Events</option>
           <option value="latestPlans">Latest Plans</option>
@@ -89,6 +90,7 @@ const UpdateNotification = () => {
             loadContent(e.target.value);
           }}
         >
+           <option value="">Select Notification Subject</option> {/* Default option */}
           {notificationSubjects.map((subject) => (
             <option key={subject} value={subject}>
               {subject}

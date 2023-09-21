@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 
 const SendNotification = () => {
-  const [notificationType, setNotificationType] = useState('promotions');
+  const [notificationType, setNotificationType] = useState('');
   const [notificationSubjects, setNotificationSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [notificationResult, setNotificationResult] = useState('');
@@ -85,6 +85,7 @@ const SendNotification = () => {
               value={notificationType}
               onChange={handleNotificationTypeChange}
             >
+              <option value="">Select Notification Type</option> {/* Default option */}
               <option value="promotions">Promotions</option>
               <option value="latestPlans">Latest Plans</option>
               <option value="releaseEvents">Release Events</option>
@@ -98,6 +99,7 @@ const SendNotification = () => {
                 value={selectedSubject}
                 onChange={handleNotificationSubjectChange}
               >
+                 <option value="">Select Notification Subject</option> {/* Default option */}
                 {notificationSubjects.map((subject) => (
                   <option key={subject} value={subject}>
                     {subject}
