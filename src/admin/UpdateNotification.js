@@ -9,6 +9,11 @@ const UpdateNotification = () => {
   const [notificationSubjects, setNotificationSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [notificationContent, setNotificationContent] = useState('');
+  
+  useEffect(() => {
+    // Fetch initial notification subjects
+    fetchNotificationSubjects(notificationType);
+  }, [notificationType]);
 
   // Function to load subjects based on the selected type
   const loadSubjects = () => {
@@ -24,6 +29,22 @@ const UpdateNotification = () => {
       });
   };
 
+  const fetchNotificationSubjects = async (notificationType) => {
+    try {
+      // Fetch notification subjects from the server based on the selected type
+      const response = await fetch(`http://localhost:8080/notification/getNotificationSubjects?notificationType=${notificationType}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        setNotificationSubjects(data);
+      } else {
+        throw new Error(`Server response was not ok (status ${response.status})`);
+      }
+    } catch (error) {
+      console.error("Error fetching notification subjects:", error);
+    }
+  };
+
   // Function to load content based on the selected subject
   const loadContent = (subject) => {
     // Make an AJAX request to fetch content based on the selected subject and type
@@ -33,7 +54,14 @@ const UpdateNotification = () => {
         setNotificationContent(content);
       });
   };
-
+  const handleNotificationTypeChange = (e) => {
+    const selectedType = e.target.value;
+    setNotificationType(selectedType);
+  };
+  const handleNotificationSubjectChange = (e) => {
+    const selectedSubject = e.target.value;
+    setSelectedSubject(selectedSubject);
+  };
   // Function to update the notification
   const updateNotification = () => {
 
@@ -71,10 +99,9 @@ const UpdateNotification = () => {
             <label htmlFor="notificationType" className="label-left">Notification Type:</label>
             <select
               id="notificationType"
-              onChange={(e) => {
-                setNotificationType(e.target.value);
-                loadSubjects();
-              }}
+              name="notificationType"
+              value={notificationType}
+              onChange={handleNotificationTypeChange}
             >
               <option value="">Select Notification Type</option> {/* Default option */}
               <option value="promotions">Promotions</option>
@@ -87,11 +114,11 @@ const UpdateNotification = () => {
           <div className="select-container">
             <label htmlFor="notificationSubject" className="label-left">Notification Subject:</label>
             <select
+              
               id="notificationSubject"
-              onChange={(e) => {
-                setSelectedSubject(e.target.value);
-                loadContent(e.target.value);
-              }}
+                name="notificationSubject"
+                value={selectedSubject}
+                onChange={handleNotificationSubjectChange}
             >
               <option value="">Select Notification Subject</option> {/* Default option */}
               {notificationSubjects.map((subject) => (
