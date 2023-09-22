@@ -140,7 +140,10 @@ class ModifyUser extends Component {
               value={this.state.email}
               onChange={(e) => this.setState({ email: e.target.value })}
             />
-            <button onClick={this.checkUser} className="signup-button button-spacing">
+            <button onClick={this.checkUser} className="signup-button button-spacing" style={{
+    display: 'block',  // Make the button a block element
+    margin: '0 auto',  // Center horizontally
+  }}>
               Check User
             </button>
           </div>
