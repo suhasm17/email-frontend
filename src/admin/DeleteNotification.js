@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
+import '../css/Notification.css';
 
 const DeleteNotification = () => {
-  const [notificationType, setNotificationType] = useState('promotions');
+  const [notificationType, setNotificationType] = useState('');
   const [notificationSubjects, setNotificationSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
 
@@ -57,41 +58,47 @@ const DeleteNotification = () => {
     <div>
       <Navbar />
       <div className="container">
-        <div className="signup-container">
-          <div>
-            <h1>Delete Notification</h1>
-            <label htmlFor="notificationType">Select Notification Type:</label>
-            <select
-              id="notificationType"
-              onChange={(e) => {
-                setNotificationType(e.target.value);
-              }}
-            >
-              <option value="promotions">Promotions</option>
-              <option value="releaseEvents">Release Events</option>
-              <option value="latestPlans">Latest Plans</option>
-            </select>
+        <div className="delete-container">
+          <h2>Delete Notification</h2>
+          <form>
+            <div className="form-group">
+              <label htmlFor="notificationType" className="label-left">Notification Type:</label>
+              <select
+                id="notificationType"
+                onChange={(e) => {
+                  setNotificationType(e.target.value);
+                }}
+              >
+                <option value="">Select Notification Type</option> {/* Default option */}
+                <option value="promotions">Promotions</option>
+                <option value="releaseEvents">Release Events</option>
+                <option value="latestPlans">Latest Plans</option>
+              </select>
+            </div>
             <br />
             <br />
-            <label htmlFor="notificationSubject">Select Notification Subject:</label>
-            <select
-              id="notificationSubject"
-              value={selectedSubject}
-              onChange={(e) => setSelectedSubject(e.target.value)}
-            >
-              {notificationSubjects.map((subject) => (
-                <option key={subject} value={subject}>
-                  {subject}
-                </option>
-              ))}
-            </select>
-          </div>
-          <br />
-          <div>
-            <button onClick={deleteNotification} className="signup-button">
-              Delete Notification
-            </button>
-          </div>
+            <div className="select-container">
+              <label htmlFor="notificationSubject" className="label-left">Notification Subject:</label>
+              <select
+                id="notificationSubject"
+                value={selectedSubject}
+                onChange={(e) => setSelectedSubject(e.target.value)}
+              >
+                <option value="">Select Notification Subject</option> {/* Default option */}
+                {notificationSubjects.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <br />
+            <div className="button-container">
+              <button onClick={deleteNotification} className="delete-button">
+                Delete Notification
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

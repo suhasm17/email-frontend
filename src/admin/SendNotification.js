@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
+import '../css/Notification.css';
 
 const SendNotification = () => {
-  const [notificationType, setNotificationType] = useState('promotions');
+  const [notificationType, setNotificationType] = useState('');
   const [notificationSubjects, setNotificationSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [notificationResult, setNotificationResult] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     // Fetch initial notification subjects
@@ -72,32 +74,37 @@ const SendNotification = () => {
   };
 
   return (
+   
     <div>
       <Navbar />
       <div className="container">
-        <div className="signup-container">
-          <h1>Send Notification</h1>
+        <div className="send-container">
+          <h2>Send Notification</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="notificationType">Notification Type:</label>
-            <select
-              id="notificationType"
-              name="notificationType"
-              value={notificationType}
-              onChange={handleNotificationTypeChange}
-            >
-              <option value="promotions">Promotions</option>
-              <option value="latestPlans">Latest Plans</option>
-              <option value="releaseEvents">Release Events</option>
-            </select>
+            <div className="form-group">
+              <label htmlFor="notificationType" className="label-left">Notification Type:</label>
+              <select
+                id="notificationType"
+                name="notificationType"
+                value={notificationType}
+                onChange={handleNotificationTypeChange}
+              >
+                <option value="">Select Notification Type</option> {/* Default option */}
+                <option value="promotions">Promotions</option>
+                <option value="latestPlans">Latest Plans</option>
+                <option value="releaseEvents">Release Events</option>
+              </select>
+            </div>
 
             <div className="select-container">
-              <label htmlFor="notificationSubject" style={{ marginTop: '10px' }}>Notification Subject:</label>
+              <label htmlFor="notificationSubject" className="label-left" style={{ marginTop: '10px' }}>Notification Subject:</label>
               <select
                 id="notificationSubject"
                 name="notificationSubject"
                 value={selectedSubject}
                 onChange={handleNotificationSubjectChange}
               >
+                <option value="">Select Notification Subject</option> {/* Default option */}
                 {notificationSubjects.map((subject) => (
                   <option key={subject} value={subject}>
                     {subject}
@@ -106,8 +113,10 @@ const SendNotification = () => {
               </select>
             </div>
 
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+
             <div className="button-container" style={{ marginTop: '10px' }}>
-              <button type="submit" className="signup-button">
+              <button type="submit" className="send-button">
                 Send Notification
               </button>
             </div>
@@ -117,5 +126,4 @@ const SendNotification = () => {
     </div>
   );
 };
-
 export default SendNotification;

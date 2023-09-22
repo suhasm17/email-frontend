@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../css/Signup.css';
+import '../css/Notification.css';
 import Navbar from '../Navbar';
 
 
 const UpdateNotification = () => {
-  const [notificationType, setNotificationType] = useState('promotions');
+  const [notificationType, setNotificationType] = useState('');
   const [notificationSubjects, setNotificationSubjects] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [notificationContent, setNotificationContent] = useState('');
@@ -61,60 +61,68 @@ const UpdateNotification = () => {
   }, []);
 
   return (
-	  	  <div>
-	  <Navbar />
-	  <div class="container">
-    <div className="signup-container">
-      <div>
-        <h1>Update Notification</h1>
-        <label htmlFor="notificationType">Select Notification Type:</label>
-        <select
-          id="notificationType"
-          onChange={(e) => {
-            setNotificationType(e.target.value);
-            loadSubjects();
-          }}
-        >
-          <option value="promotions">Promotions</option>
-          <option value="releaseEvents">Release Events</option>
-          <option value="latestPlans">Latest Plans</option>
-        </select>
-        <br />
-        <br />
-        <label htmlFor="notificationSubject">Select Notification Subject:</label>
-        <select
-          id="notificationSubject"
-          onChange={(e) => {
-            setSelectedSubject(e.target.value);
-            loadContent(e.target.value);
-          }}
-        >
-          {notificationSubjects.map((subject) => (
-            <option key={subject} value={subject}>
-              {subject}
-            </option>
-          ))}
-        </select>
-        <br />
-        <br />
-        <label htmlFor="notificationContent">Notification Content:</label>
-        <textarea
-          id="notificationContent"
-          rows="5"
-          cols="50"
-          value={notificationContent}
-          onChange={(e) => setNotificationContent(e.target.value)}
-        ></textarea>
+    <div>
+    <Navbar />
+    <div className="container">
+      <div className="update-container">
+        <h2>Update Notification</h2>
+        <form>
+          <div className="form-group">
+            <label htmlFor="notificationType" className="label-left">Notification Type:</label>
+            <select
+              id="notificationType"
+              onChange={(e) => {
+                setNotificationType(e.target.value);
+                loadSubjects();
+              }}
+            >
+              <option value="">Select Notification Type</option> {/* Default option */}
+              <option value="promotions">Promotions</option>
+              <option value="releaseEvents">Release Events</option>
+              <option value="latestPlans">Latest Plans</option>
+            </select>
+          </div>
+          <br />
+          <br />
+          <div className="select-container">
+            <label htmlFor="notificationSubject" className="label-left">Notification Subject:</label>
+            <select
+              id="notificationSubject"
+              onChange={(e) => {
+                setSelectedSubject(e.target.value);
+                loadContent(e.target.value);
+              }}
+            >
+              <option value="">Select Notification Subject</option> {/* Default option */}
+              {notificationSubjects.map((subject) => (
+                <option key={subject} value={subject}>
+                  {subject}
+                </option>
+              ))}
+            </select>
+          </div>
+          <br />
+          <br />
+          <div className="form-group">
+            <label htmlFor="notificationContent" className="label-left">Notification Content:</label>
+            <textarea
+              id="notificationContent"
+              rows="5"
+              cols="50"
+              value={notificationContent}
+              onChange={(e) => setNotificationContent(e.target.value)}
+            ></textarea>
+          </div>
+          <br />
+          <div className="button-container">
+            <button onClick={updateNotification} className="update-button">
+              Update Notification
+            </button>
+          </div>
+        </form>
       </div>
-      <br />
-      <div>
-        <button onClick={updateNotification} className="signup-button">
-          Update Notification
-        </button>
-      </div>
     </div>
-    </div>
-    </div>
+  </div>
   );
 };
 
